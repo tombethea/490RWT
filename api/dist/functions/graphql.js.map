@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/functions/graphql.js"],
+  "sourcesContent": ["import { createGraphQLHandler } from '@redwoodjs/graphql-server'\n\nimport directives from 'src/directives/**/*.{js,ts}'\nimport sdls from 'src/graphql/**/*.sdl.{js,ts}'\nimport services from 'src/services/**/*.{js,ts}'\n\nimport { getCurrentUser } from 'src/lib/auth'\nimport { db } from 'src/lib/db'\nimport { logger } from 'src/lib/logger'\n\nexport const handler = createGraphQLHandler({\n  loggerConfig: { logger, options: {} },\n  getCurrentUser,\n  directives,\n  sdls,\n  services,\n\n  onException: () => {\n    // Disconnect from your database with an unhandled exception.\n    db.$disconnect()\n  },\n})\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;AAAA;;;;;4BAAqC;;;;;;;;;AAMrC,kBAAA;AACA,gBAAA;AACA,oBAAA;;;;;;;;;;;;AAEO,MAAMA,cAAUC,4CAAqB;EAC1CC,cAAc;IAAEC;IAAQC,SAAS,CAAA;EAAnB;EACdC;EACAC;EACAC;EACAC;EAEAC,aAAa,MAAM;AAEjBC,iBAAGC,YAAH;EACD;AAVyC,CAAD;",
+  "names": ["handler", "createGraphQLHandler", "loggerConfig", "logger", "options", "getCurrentUser", "directives", "sdls", "services", "onException", "db", "$disconnect"]
+}
